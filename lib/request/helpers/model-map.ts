@@ -13,6 +13,15 @@
  */
 export const MODEL_MAP: Record<string, string> = {
 // ============================================================================
+// GPT-5.2 Codex Models (newest - optimized for agentic coding)
+// ============================================================================
+	"gpt-5.2-codex": "gpt-5.2-codex",
+	"gpt-5.2-codex-low": "gpt-5.2-codex",
+	"gpt-5.2-codex-medium": "gpt-5.2-codex",
+	"gpt-5.2-codex-high": "gpt-5.2-codex",
+	"gpt-5.2-codex-xhigh": "gpt-5.2-codex",
+
+// ============================================================================
 // GPT-5.1 Codex Models
 // ============================================================================
 	"gpt-5.1-codex": "gpt-5.1-codex",
