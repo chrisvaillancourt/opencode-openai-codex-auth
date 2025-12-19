@@ -33,8 +33,9 @@ Follow me on [X @nummanthinks](https://x.com/nummanthinks) for future updates an
 ## Features
 
 - ✅ **ChatGPT Plus/Pro OAuth authentication** - Use your existing subscription
-- ✅ **18 pre-configured model variants** - GPT 5.2, GPT 5.1, GPT 5.1 Codex, GPT 5.1 Codex Max, and GPT 5.1 Codex Mini presets for all reasoning levels
-- ✅ **GPT 5.2 support** - Latest model with `low/medium/high/xhigh` reasoning levels
+- ✅ **22 pre-configured model variants** - GPT 5.2 Codex, GPT 5.2, GPT 5.1, GPT 5.1 Codex, GPT 5.1 Codex Max, and GPT 5.1 Codex Mini presets for all reasoning levels
+- ✅ **GPT 5.2 Codex support** - Most advanced agentic coding model with `low/medium/high/xhigh` reasoning levels
+- ✅ **GPT 5.2 support** - General purpose model with `low/medium/high/xhigh` reasoning levels
 - ✅ **Full image input support** - All models configured with multimodal capabilities for reading screenshots, diagrams, and images
 - ⚠️ **GPT 5.1+ only** - Older GPT 5.0 models are deprecated and may not work reliably
 - ✅ **Zero external dependencies** - Lightweight with only @openauthjs/openauth
@@ -62,7 +63,7 @@ Follow me on [X @nummanthinks](https://x.com/nummanthinks) for future updates an
 #### Recommended: Pin the Version
 
 ```json
-"plugin": ["opencode-openai-codex-auth@4.1.1"]
+"plugin": ["opencode-openai-codex-auth@4.2.0"]
 ```
 
 **Why pin versions?** OpenCode uses Bun's lockfile which pins resolved versions. If you use `"opencode-openai-codex-auth"` without a version, it resolves to "latest" once and **never updates** even when new versions are published.
@@ -76,7 +77,7 @@ Simply change the version in your config and restart OpenCode:
 "plugin": ["opencode-openai-codex-auth@3.3.0"]
 
 // To:
-"plugin": ["opencode-openai-codex-auth@4.1.1"]
+"plugin": ["opencode-openai-codex-auth@4.2.0"]
 ```
 
 OpenCode will detect the version mismatch and install the new version automatically.
@@ -112,7 +113,7 @@ Check [releases](https://github.com/numman-ali/opencode-openai-codex-auth/releas
 ```json
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": ["opencode-openai-codex-auth@4.1.1"],
+  "plugin": ["opencode-openai-codex-auth@4.2.0"],
   "provider": {
     "openai": {
       "options": {
@@ -159,14 +160,15 @@ Check [releases](https://github.com/numman-ali/opencode-openai-codex-auth/releas
    **Global config**: `~/.config/opencode/opencode.json`
    **Project config**: `<project>/.opencode.json`
 
-   This gives you 18 model variants with different reasoning levels:
-   - **gpt-5.2** (none/low/medium/high/xhigh) - Latest GPT 5.2 model with full reasoning support
+   This gives you 22 model variants with different reasoning levels:
+   - **gpt-5.2-codex** (low/medium/high/xhigh) - Most advanced agentic coding model
+   - **gpt-5.2** (none/low/medium/high/xhigh) - Latest GPT 5.2 general purpose model
    - **gpt-5.1-codex-max** (low/medium/high/xhigh) - Codex Max presets
    - **gpt-5.1-codex** (low/medium/high) - Codex model presets
    - **gpt-5.1-codex-mini** (medium/high) - Codex mini tier presets
    - **gpt-5.1** (none/low/medium/high) - General-purpose reasoning presets
 
-   All appear in the opencode model selector as "GPT 5.1 Codex Low (OAuth)", "GPT 5.1 High (OAuth)", etc.
+   All appear in the opencode model selector as "GPT 5.2 Codex High (OAuth)", "GPT 5.1 High (OAuth)", etc.
 
 ### Prompt caching & usage limits
 
@@ -238,6 +240,10 @@ When using [`config/full-opencode.json`](./config/full-opencode.json), you get t
 
 | CLI Model ID | TUI Display Name | Reasoning Effort | Best For |
 |--------------|------------------|-----------------|----------|
+| `gpt-5.2-codex-low` | GPT 5.2 Codex Low (OAuth) | Low | Fast agentic code generation |
+| `gpt-5.2-codex-medium` | GPT 5.2 Codex Medium (OAuth) | Medium | Balanced agentic coding tasks |
+| `gpt-5.2-codex-high` | GPT 5.2 Codex High (OAuth) | High | Complex agentic coding & refactoring |
+| `gpt-5.2-codex-xhigh` | GPT 5.2 Codex Extra High (OAuth) | xHigh | Deep agentic coding, long-horizon tasks |
 | `gpt-5.2-low` | GPT 5.2 Low (OAuth) | Low | Fast GPT 5.2 responses |
 | `gpt-5.2-medium` | GPT 5.2 Medium (OAuth) | Medium | Balanced GPT 5.2 tasks |
 | `gpt-5.2-high` | GPT 5.2 High (OAuth) | High | Complex GPT 5.2 reasoning |
@@ -260,7 +266,7 @@ When using [`config/full-opencode.json`](./config/full-opencode.json), you get t
 
 > **Note**: All `gpt-5.1-codex-mini*` presets map directly to the `gpt-5.1-codex-mini` slug with standard Codex limits (272k context / 128k output).
 >
-> **Note**: GPT 5.2 and Codex Max both support `xhigh` reasoning. Use explicit reasoning levels (e.g., `gpt-5.2-high`, `gpt-5.1-codex-max-xhigh`) for precise control.
+> **Note**: GPT 5.2, GPT 5.2 Codex, and Codex Max support `xhigh` reasoning. Use explicit reasoning levels (e.g., `gpt-5.2-codex-high`, `gpt-5.1-codex-max-xhigh`) for precise control.
 
 > **⚠️ Important**: GPT 5 models can be temperamental - some variants may work better than others, some may give errors, and behavior may vary. Stick to the presets above configured in `full-opencode.json` for best results.
 
@@ -323,17 +329,17 @@ If you want to customize settings yourself, you can configure options at provide
 
 ⚠️ **Important**: Families have different supported values.
 
-| Setting | GPT-5.2 Values | GPT-5.1 Values | GPT-5.1-Codex Values | GPT-5.1-Codex-Max Values | Plugin Default |
-|---------|---------------|----------------|----------------------|---------------------------|----------------|
-| `reasoningEffort` | `none`, `low`, `medium`, `high`, `xhigh` | `none`, `low`, `medium`, `high` | `low`, `medium`, `high` | `low`, `medium`, `high`, `xhigh` | `medium` (global), `high` for Codex Max/5.2 |
-| `reasoningSummary` | `auto`, `concise`, `detailed` | `auto`, `concise`, `detailed` | `auto`, `concise`, `detailed` | `auto`, `concise`, `detailed`, `off`, `on` | `auto` |
-| `textVerbosity` | `low`, `medium`, `high` | `low`, `medium`, `high` | `medium` or `high` | `medium` or `high` | `medium` |
-| `include` | Array of strings | Array of strings | Array of strings | Array of strings | `["reasoning.encrypted_content"]` |
+| Setting | GPT-5.2-Codex Values | GPT-5.2 Values | GPT-5.1 Values | GPT-5.1-Codex Values | GPT-5.1-Codex-Max Values | Plugin Default |
+|---------|---------------------|---------------|----------------|----------------------|---------------------------|----------------|
+| `reasoningEffort` | `low`, `medium`, `high`, `xhigh` | `none`, `low`, `medium`, `high`, `xhigh` | `none`, `low`, `medium`, `high` | `low`, `medium`, `high` | `low`, `medium`, `high`, `xhigh` | `medium` (global), `high` for Codex models |
+| `reasoningSummary` | `auto`, `concise`, `detailed` | `auto`, `concise`, `detailed` | `auto`, `concise`, `detailed` | `auto`, `concise`, `detailed` | `auto`, `concise`, `detailed`, `off`, `on` | `auto` |
+| `textVerbosity` | `medium` or `high` | `low`, `medium`, `high` | `low`, `medium`, `high` | `medium` or `high` | `medium` or `high` | `medium` |
+| `include` | Array of strings | Array of strings | Array of strings | Array of strings | Array of strings | `["reasoning.encrypted_content"]` |
 
 > **Notes**:
 > - GPT 5.2 and GPT 5.1 (general purpose) support `none` reasoning per OpenAI API docs.
-> - `none` is NOT supported for Codex variants - auto-converts to `low` for Codex/Codex Max, or `medium` for Codex Mini.
-> - GPT 5.2 and Codex Max support `xhigh` reasoning.
+> - `none` is NOT supported for Codex variants (GPT-5.2-Codex, GPT-5.1-Codex, Codex Max) - auto-converts to `low`, or `medium` for Codex Mini.
+> - GPT 5.2, GPT 5.2 Codex, and Codex Max support `xhigh` reasoning.
 > - `minimal` effort is auto-normalized to `low` for Codex models.
 > - Codex Mini clamps to `medium`/`high`; `xhigh` downgrades to `high`.
 > - All models have `modalities.input: ["text", "image"]` enabled for multimodal support.
@@ -345,7 +351,7 @@ Apply settings to all models:
 ```json
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": ["opencode-openai-codex-auth@4.1.1"],
+  "plugin": ["opencode-openai-codex-auth@4.2.0"],
   "model": "openai/gpt-5-codex",
   "provider": {
     "openai": {
@@ -365,7 +371,7 @@ Create your own named variants in the model selector:
 ```json
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": ["opencode-openai-codex-auth@4.1.1"],
+  "plugin": ["opencode-openai-codex-auth@4.2.0"],
   "provider": {
     "openai": {
       "models": {

@@ -2,6 +2,29 @@
 
 All notable changes to this project are documented here. Dates use the ISO format (YYYY-MM-DD).
 
+## [4.2.0] - 2025-12-18
+
+**Feature release**: GPT 5.2 Codex model support - OpenAI's most advanced agentic coding model.
+
+### Added
+- **GPT 5.2 Codex model family support**: Full support for OpenAI's latest agentic coding model `gpt-5.2-codex` with 4 reasoning level presets:
+  - `gpt-5.2-codex-low` - Fast agentic code generation
+  - `gpt-5.2-codex-medium` - Balanced agentic coding tasks
+  - `gpt-5.2-codex-high` - Complex agentic coding & refactoring
+  - `gpt-5.2-codex-xhigh` - Deep agentic coding, long-horizon tasks
+- **22 pre-configured model variants** (up from 18): GPT 5.2 Codex, GPT 5.2, GPT 5.1, GPT 5.1 Codex, GPT 5.1 Codex Max, and GPT 5.1 Codex Mini.
+
+### Technical Details
+- `gpt-5.2-codex` is GPT-5.2 further optimized for agentic coding per OpenAI's December 2025 announcement.
+- Supports `low`, `medium`, `high`, and `xhigh` reasoning levels (like Codex Max).
+- Does NOT support `none` reasoning (auto-converts to `low` like other Codex variants).
+- Default reasoning effort is `high` for optimal agentic coding performance.
+- Model map, request transformer, and config updated to handle gpt-5.2-codex pattern matching.
+
+### References
+- OpenAI Codex changelog: https://developers.openai.com/codex/changelog
+- OpenAI Codex models: https://developers.openai.com/codex/models
+
 ## [4.1.1] - 2025-12-17
 
 **Minor release**: "none" reasoning effort support, orphaned function_call_output fix, and HTML version update.
